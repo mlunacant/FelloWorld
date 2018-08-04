@@ -5,21 +5,20 @@ open System.Collections.Generic
 open System.Linq
 open System.Threading.Tasks
 open Microsoft.AspNetCore.Mvc
-open ValuesService
 
 [<Route("api/[controller]")>]
 [<ApiController>]
-type ValuesController (service: IValuesService) =
+type ValuesController () =
     inherit ControllerBase()
 
     [<HttpGet>]
     member this.Get() =
-        let values = service.GetAllValues()
+        let values = [|"value1"; "value2"|]
         ActionResult<string[]>(values)
 
     [<HttpGet("{id}")>]
     member this.Get(id:int) =
-        let value = service.GetValue(id)
+        let value = "value"
         ActionResult<string>(value)
 
     [<HttpPost>]
